@@ -57,11 +57,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         
-        if theEvent.modifierFlags.contains(.option) {
+        if theEvent.modifierFlags.contains(.function) {
            self.toggleMic(true)
         } else {
            self.toggleMic(false)
-        }    
+        }
     }
     
     /**
