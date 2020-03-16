@@ -93,13 +93,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             mScope: AudioObjectPropertyScope(kAudioObjectPropertyScopeGlobal),
             mElement: AudioObjectPropertyElement(kAudioObjectPropertyElementMaster))
         
-        let status1 = AudioObjectGetPropertyData(
+        let err = AudioObjectGetPropertyData(
             AudioObjectID(kAudioObjectSystemObject),
             &getDefaultInputDevicePropertyAddress,
             0,
             nil,
             &defaultOutputDeviceIDSize,
             &defaultOutputDeviceID)
+
+        if (err != kAudioHardwareNoError) {
+            NSLog("Error setting audio object property data #%d", err);
+        }
     }
     
     /**
@@ -120,7 +124,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             mScope: AudioObjectPropertyScope(kAudioDevicePropertyScopeInput),
             mElement: AudioObjectPropertyElement(kAudioObjectPropertyElementMaster))
         
-        AudioObjectGetPropertyData(defaultInputDeviceId, &volumePropertyAddress, 0, nil, &volumeSize, &volume)
+        let err = AudioObjectGetPropertyData(defaultInputDeviceId, &volumePropertyAddress, 0, nil, &volumeSize, &volume)
+
+        if (err != kAudioHardwareNoError) {
+            NSLog("Error getting audio object property data #%d", err);
+        }
         
         return volume
     }
@@ -145,6 +153,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         var mute:UInt32 = mute ? 1 : 0;
         
         let err = AudioObjectSetPropertyData(defaultInputDeviceId, &address, 0, nil, size, &mute)
+
+        if (err != kAudioHardwareNoError) {
+            NSLog("Error setting audio object property data #%d", err);
+        }
     }
     
     func updateToggleTitle() {
