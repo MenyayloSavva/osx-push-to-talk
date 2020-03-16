@@ -32,9 +32,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         // add status menu
-        talkIcon = NSImage(named: NSImage.Name(rawValue: "statusIconTalk"))
-        muteIcon = NSImage(named: NSImage.Name(rawValue: "statusIconMute"))
-        disabledIcon = NSImage(named: NSImage.Name(rawValue: "statusIconDisabled"))
+        talkIcon = NSImage(named: "statusIconTalk")
+        muteIcon = NSImage(named: "statusIconMute")
+        disabledIcon = NSImage(named: "statusIconDisabled")
         updateToggleTitle()
         
         statusItem.image = muteIcon
@@ -45,7 +45,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSEvent.addGlobalMonitorForEvents(matching: NSEvent.EventTypeMask.flagsChanged, handler: handleFlagChangedEvent)
         
         // handle when application is on foreground
-        NSEvent.addLocalMonitorForEvents(matching: NSEvent.EventTypeMask.flagsChanged, handler: { (theEvent) -> NSEvent! in
+        NSEvent.addLocalMonitorForEvents(matching: NSEvent.EventTypeMask.flagsChanged, handler: { (theEvent) -> NSEvent? in
             self.handleFlagChangedEvent(theEvent)
             return theEvent
         })
