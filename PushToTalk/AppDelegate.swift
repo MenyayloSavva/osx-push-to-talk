@@ -27,14 +27,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var disabledIcon:NSImage?
     
     
-    let statusItem = NSStatusBar.system().statusItem(withLength: -1)
+    let statusItem = NSStatusBar.system.statusItem(withLength: -1)
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         // add status menu
-        talkIcon = NSImage(named: "statusIconTalk")
-        muteIcon = NSImage(named: "statusIconMute")
-        disabledIcon = NSImage(named: "statusIconDisabled")
+        talkIcon = NSImage(named: NSImage.Name(rawValue: "statusIconTalk"))
+        muteIcon = NSImage(named: NSImage.Name(rawValue: "statusIconMute"))
+        disabledIcon = NSImage(named: NSImage.Name(rawValue: "statusIconDisabled"))
         updateToggleTitle()
         
         statusItem.image = muteIcon
@@ -42,10 +42,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
 
         // handle when application is on background
-        NSEvent.addGlobalMonitorForEvents(matching: NSEventMask.flagsChanged, handler: handleFlagChangedEvent)
+        NSEvent.addGlobalMonitorForEvents(matching: NSEvent.EventTypeMask.flagsChanged, handler: handleFlagChangedEvent)
         
         // handle when application is on foreground
-        NSEvent.addLocalMonitorForEvents(matching: NSEventMask.flagsChanged, handler: { (theEvent) -> NSEvent! in
+        NSEvent.addLocalMonitorForEvents(matching: NSEvent.EventTypeMask.flagsChanged, handler: { (theEvent) -> NSEvent! in
             self.handleFlagChangedEvent(theEvent)
             return theEvent
         })
@@ -57,7 +57,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         
-        if theEvent.modifierFlags.contains(.function) {
+        if theEvent.modifierFlags.contains(NSEvent.ModifierFlags.function) {
            self.toggleMic(true)
         } else {
            self.toggleMic(false)
