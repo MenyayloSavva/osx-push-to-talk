@@ -12,61 +12,53 @@ import Foundation
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var menuItemToggle: NSMenuItem!
-    
-    let keyDownMask = 0x80140
-    let keyUpMask = 0x100
-    var talking = false
+
     var enable = true
-    
+
     var talkIcon:NSImage?
     var muteIcon:NSImage?
     var disabledIcon:NSImage?
-    
-    
+
     let statusItem = NSStatusBar.system.statusItem(withLength: -1)
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        
+
         // add status menu
         talkIcon = NSImage(named: "statusIconTalk")
         muteIcon = NSImage(named: "statusIconMute")
         disabledIcon = NSImage(named: "statusIconDisabled")
         updateToggleTitle()
-        
+
         statusItem.image = muteIcon
         statusItem.menu = statusMenu
-        
 
         // handle when application is on background
         NSEvent.addGlobalMonitorForEvents(matching: NSEvent.EventTypeMask.flagsChanged, handler: handleFlagChangedEvent)
-        
+
         // handle when application is on foreground
         NSEvent.addLocalMonitorForEvents(matching: NSEvent.EventTypeMask.flagsChanged, handler: { (theEvent) -> NSEvent? in
             self.handleFlagChangedEvent(theEvent)
             return theEvent
         })
     }
-    
-    
+
     func handleFlagChangedEvent(_ theEvent:NSEvent!) {
         if !self.enable {
             return
         }
-        
+
         if theEvent.modifierFlags.contains(NSEvent.ModifierFlags.function) {
-           self.toggleMic(true)
+            self.toggleMic(true)
         } else {
-           self.toggleMic(false)
+            self.toggleMic(false)
         }
     }
-    
+
     /**
     Helper function triggered whenever the button in pressed
-    
+
     :param: enable set the state of the microphone
     */
     func toggleMic(_ enable:Bool) {
@@ -81,18 +73,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     /**
     Function to get default output volume
-    
+
     :param: defaultOutputDeviceID inputoutput variable result of deviceID
     */
     func getDefaultInputDevice(_ defaultOutputDeviceID:inout UInt32)  {
         defaultOutputDeviceID = AudioDeviceID(0)
         var defaultOutputDeviceIDSize = UInt32(MemoryLayout.size(ofValue: defaultOutputDeviceID))
-        
+
         var getDefaultInputDevicePropertyAddress = AudioObjectPropertyAddress(
             mSelector: AudioObjectPropertySelector(kAudioHardwarePropertyDefaultInputDevice),
             mScope: AudioObjectPropertyScope(kAudioObjectPropertyScopeGlobal),
             mElement: AudioObjectPropertyElement(kAudioObjectPropertyElementMaster))
-        
+
         let err = AudioObjectGetPropertyData(
             AudioObjectID(kAudioObjectSystemObject),
             &getDefaultInputDevicePropertyAddress,
@@ -105,41 +97,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             NSLog("Error setting audio object property data #%d", err);
         }
     }
-    
-    /**
-    Return default Output volume
-    
-    :returns: default output folume level 0.0 ... 1.0
-    */
-    func getDefaultOutputVolume() -> Float32 {
-        var defaultInputDeviceId = AudioDeviceID(0)
-        getDefaultInputDevice(&defaultInputDeviceId)
-        
-        // show volume
-        var volume = Float32(0.50) // 0.0 ... 1.0
-        var volumeSize = UInt32(MemoryLayout.size(ofValue: volume))
-        
-        var volumePropertyAddress = AudioObjectPropertyAddress(
-            mSelector: AudioObjectPropertySelector(kAudioDevicePropertyVolumeScalar),
-            mScope: AudioObjectPropertyScope(kAudioDevicePropertyScopeInput),
-            mElement: AudioObjectPropertyElement(kAudioObjectPropertyElementMaster))
-        
-        let err = AudioObjectGetPropertyData(defaultInputDeviceId, &volumePropertyAddress, 0, nil, &volumeSize, &volume)
-
-        if (err != kAudioHardwareNoError) {
-            NSLog("Error getting audio object property data #%d", err);
-        }
-        
-        return volume
-    }
 
     /**
     Function to mute the default input microphone
     */
     func toggleMute(_ mute:Bool) {
-      
+
         /* https://github.com/paulreimer/ofxAudioFeatures/blob/master/src/ofxAudioDeviceControl.mm */
-        
+
         var defaultInputDeviceId = AudioDeviceID(0)
         getDefaultInputDevice(&defaultInputDeviceId)
 
@@ -148,17 +113,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             mSelector: AudioObjectPropertySelector(kAudioDevicePropertyMute),
             mScope: AudioObjectPropertyScope(kAudioDevicePropertyScopeInput),
             mElement: AudioObjectPropertyElement(kAudioObjectPropertyElementMaster))
-        
+
         let size = UInt32(MemoryLayout<UInt32>.size)
         var mute:UInt32 = mute ? 1 : 0;
-        
+
         let err = AudioObjectSetPropertyData(defaultInputDeviceId, &address, 0, nil, size, &mute)
 
         if (err != kAudioHardwareNoError) {
             NSLog("Error setting audio object property data #%d", err);
         }
     }
-    
+
     func updateToggleTitle() {
         if (enable) {
             menuItemToggle.title = "Disable"
@@ -168,17 +133,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             statusItem.image = disabledIcon
         }
     }
-    
-    // MARK: Menu item Actions
+
     @IBAction func toggleAction(_ sender: NSMenuItem) {
         enable = !enable
         toggleMute(enable)
         updateToggleTitle()
     }
-    
+
     @IBAction func menuItemQuitAction(_ sender: NSMenuItem) {
         toggleMute(false)
         exit(0)
     }
 }
-
