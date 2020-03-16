@@ -10,18 +10,7 @@
 		0ED8478A1AB89E2D00710ABA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED847891AB89E2D00710ABA /* AppDelegate.swift */; };
 		0ED8478C1AB89E2D00710ABA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ED8478B1AB89E2D00710ABA /* Images.xcassets */; };
 		0ED8478F1AB89E2D00710ABA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ED8478D1AB89E2D00710ABA /* MainMenu.xib */; };
-		0ED8479B1AB89E2E00710ABA /* PushToTalkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED8479A1AB89E2E00710ABA /* PushToTalkTests.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		0ED847951AB89E2E00710ABA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ED8477C1AB89E2D00710ABA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0ED847831AB89E2D00710ABA;
-			remoteInfo = PushToTalk;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0ED847841AB89E2D00710ABA /* PushToTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PushToTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -29,20 +18,10 @@
 		0ED847891AB89E2D00710ABA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0ED8478B1AB89E2D00710ABA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0ED8478E1AB89E2D00710ABA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		0ED847941AB89E2E00710ABA /* PushToTalkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PushToTalkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0ED847991AB89E2E00710ABA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0ED8479A1AB89E2E00710ABA /* PushToTalkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushToTalkTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		0ED847811AB89E2D00710ABA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0ED847911AB89E2E00710ABA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -56,7 +35,6 @@
 			isa = PBXGroup;
 			children = (
 				0ED847861AB89E2D00710ABA /* PushToTalk */,
-				0ED847971AB89E2E00710ABA /* PushToTalkTests */,
 				0ED847851AB89E2D00710ABA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,7 +43,6 @@
 			isa = PBXGroup;
 			children = (
 				0ED847841AB89E2D00710ABA /* PushToTalk.app */,
-				0ED847941AB89E2E00710ABA /* PushToTalkTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -85,23 +62,6 @@
 			isa = PBXGroup;
 			children = (
 				0ED847881AB89E2D00710ABA /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		0ED847971AB89E2E00710ABA /* PushToTalkTests */ = {
-			isa = PBXGroup;
-			children = (
-				0ED8479A1AB89E2E00710ABA /* PushToTalkTests.swift */,
-				0ED847981AB89E2E00710ABA /* Supporting Files */,
-			);
-			path = PushToTalkTests;
-			sourceTree = "<group>";
-		};
-		0ED847981AB89E2E00710ABA /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				0ED847991AB89E2E00710ABA /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -126,24 +86,6 @@
 			productReference = 0ED847841AB89E2D00710ABA /* PushToTalk.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0ED847931AB89E2E00710ABA /* PushToTalkTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0ED847A11AB89E2E00710ABA /* Build configuration list for PBXNativeTarget "PushToTalkTests" */;
-			buildPhases = (
-				0ED847901AB89E2E00710ABA /* Sources */,
-				0ED847911AB89E2E00710ABA /* Frameworks */,
-				0ED847921AB89E2E00710ABA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0ED847961AB89E2E00710ABA /* PBXTargetDependency */,
-			);
-			name = PushToTalkTests;
-			productName = PushToTalkTests;
-			productReference = 0ED847941AB89E2E00710ABA /* PushToTalkTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -156,11 +98,6 @@
 					0ED847831AB89E2D00710ABA = {
 						CreatedOnToolsVersion = 6.2;
 						LastSwiftMigration = 1130;
-					};
-					0ED847931AB89E2E00710ABA = {
-						CreatedOnToolsVersion = 6.2;
-						LastSwiftMigration = 1130;
-						TestTargetID = 0ED847831AB89E2D00710ABA;
 					};
 				};
 			};
@@ -178,7 +115,6 @@
 			projectRoot = "";
 			targets = (
 				0ED847831AB89E2D00710ABA /* PushToTalk */,
-				0ED847931AB89E2E00710ABA /* PushToTalkTests */,
 			);
 		};
 /* End PBXProject section */
@@ -193,13 +129,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0ED847921AB89E2E00710ABA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -211,23 +140,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0ED847901AB89E2E00710ABA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0ED8479B1AB89E2E00710ABA /* PushToTalkTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		0ED847961AB89E2E00710ABA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0ED847831AB89E2D00710ABA /* PushToTalk */;
-			targetProxy = 0ED847951AB89E2E00710ABA /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0ED8478D1AB89E2D00710ABA /* MainMenu.xib */ = {
@@ -374,48 +287,6 @@
 			};
 			name = Release;
 		};
-		0ED847A21AB89E2E00710ABA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = PushToTalkTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yulrizka.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PushToTalk.app/Contents/MacOS/PushToTalk";
-			};
-			name = Debug;
-		};
-		0ED847A31AB89E2E00710ABA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = PushToTalkTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yulrizka.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PushToTalk.app/Contents/MacOS/PushToTalk";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -433,15 +304,6 @@
 			buildConfigurations = (
 				0ED8479F1AB89E2E00710ABA /* Debug */,
 				0ED847A01AB89E2E00710ABA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		0ED847A11AB89E2E00710ABA /* Build configuration list for PBXNativeTarget "PushToTalkTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0ED847A21AB89E2E00710ABA /* Debug */,
-				0ED847A31AB89E2E00710ABA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
