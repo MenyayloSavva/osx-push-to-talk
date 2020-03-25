@@ -24,8 +24,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   let statusItem = NSStatusBar.system.statusItem(withLength: -1)
 
   func applicationDidFinishLaunching(_ aNotification: Notification) {
-
-    // add status menu
     talkIcon = NSImage(named: "statusIconTalk")
     muteIcon = NSImage(named: "statusIconMute")
     disabledIcon = NSImage(named: "statusIconDisabled")
@@ -56,11 +54,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
   }
 
-  /**
-  Helper function triggered whenever the button in pressed
-
-  :param: enable set the state of the microphone
-  */
   func toggleMic(_ enable:Bool) {
     if (enable) {
       toggleMute(false)
@@ -71,11 +64,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
   }
 
-  /**
-  Function to get default output volume
-
-  :param: defaultOutputDeviceID inputoutput variable result of deviceID
-  */
   func getDefaultInputDevice(_ defaultOutputDeviceID:inout UInt32)  {
     defaultOutputDeviceID = AudioDeviceID(0)
     var defaultOutputDeviceIDSize = UInt32(MemoryLayout.size(ofValue: defaultOutputDeviceID))
@@ -98,17 +86,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
   }
 
-  /**
-  Function to mute the default input microphone
-  */
   func toggleMute(_ mute:Bool) {
-
-    /* https://github.com/paulreimer/ofxAudioFeatures/blob/master/src/ofxAudioDeviceControl.mm */
-
+		// https://github.com/paulreimer/ofxAudioFeatures/blob/master/src/ofxAudioDeviceControl.mm
     var defaultInputDeviceId = AudioDeviceID(0)
     getDefaultInputDevice(&defaultInputDeviceId)
 
-    // set mute
     var address = AudioObjectPropertyAddress(
       mSelector: AudioObjectPropertySelector(kAudioDevicePropertyMute),
       mScope: AudioObjectPropertyScope(kAudioDevicePropertyScopeInput),
