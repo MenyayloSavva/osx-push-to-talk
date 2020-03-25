@@ -19,14 +19,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   var talkIcon:NSImage?
   var muteIcon:NSImage?
-  var disabledIcon:NSImage?
 
   let statusItem = NSStatusBar.system.statusItem(withLength: -1)
 
   func applicationDidFinishLaunching(_ aNotification: Notification) {
     talkIcon = NSImage(named: "statusIconTalk")
     muteIcon = NSImage(named: "statusIconMute")
-    disabledIcon = NSImage(named: "statusIconDisabled")
     updateToggleTitle()
 
     statusItem.image = muteIcon
@@ -112,7 +110,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       statusItem.image = muteIcon
     } else {
       menuItemToggle.title = "Enable"
-      statusItem.image = disabledIcon
+      statusItem.image = talkIcon
     }
   }
 
