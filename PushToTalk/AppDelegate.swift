@@ -23,8 +23,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   let statusItem = NSStatusBar.system.statusItem(withLength: -1)
 
   func applicationDidFinishLaunching(_ aNotification: Notification) {
-    talkIcon = NSImage(named: "statusIconTalk")
-    muteIcon = NSImage(named: "statusIconMute")
+    talkIcon = NSImage(named: "talk")
+    muteIcon = NSImage(named: "mute")
     updateToggleTitle()
 
     statusItem.image = muteIcon
