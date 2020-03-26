@@ -10,6 +10,7 @@ import Cocoa
 import AudioToolbox
 import Foundation
 import AVFoundation
+import Carbon.HIToolbox.Events
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -28,6 +29,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   let statusItem = NSStatusBar.system.statusItem(withLength: -1)
 
+  var previousTimestamp:Double = 0
+
   func applicationDidFinishLaunching(_ aNotification: Notification) {
     talkIcon = NSImage(named: "talk")
     muteIcon = NSImage(named: "mute")
@@ -36,8 +39,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     apUp = loadPlayer("sounds/up")
     apDown = loadPlayer("sounds/down")
 
-    updateMic()
     updateToggleTitle()
+    updateMic()
 
     statusItem.image = muteIcon
     statusItem.menu = statusMenu
@@ -54,8 +57,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   @IBAction func toggleAction(_ sender: NSMenuItem) {
     enabled = !enabled
-    updateMic()
     updateToggleTitle()
+    updateMic()
   }
 
   @IBAction func menuItemQuitAction(_ sender: NSMenuItem) {
@@ -78,13 +81,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   func handleFlagChangedEvent(_ theEvent:NSEvent!) {
-    pushed = theEvent.modifierFlags.contains(NSEvent.ModifierFlags.function)
+    if theEvent.keyCode != kVK_Function { return }
+
+    pushed = theEvent.modifierFlags.contains(.function)
+
+    if pushed {
+      let timestamp = Date().timeIntervalSince1970
+
+      if timestamp - previousTimestamp < 0.2 {
+        previousTimestamp = 0
+
+        enabled = !enabled
+        updateToggleTitle()
+      } else {
+        previousTimestamp = timestamp
+      }
+    }
+
     updateMic()
   }
 
   func updateMic() {
     let mute = pushed != enabled
-    if (muted != mute) {
+    if muted != mute {
       muted = mute
 
       toggleMute(mute)
