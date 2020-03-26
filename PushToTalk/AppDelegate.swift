@@ -42,15 +42,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   func handleFlagChangedEvent(_ theEvent:NSEvent!) {
-    if !self.enable {
-      return
-    }
-
-    if theEvent.modifierFlags.contains(NSEvent.ModifierFlags.function) {
-      self.toggleMic(true)
-    } else {
-      self.toggleMic(false)
-    }
+    let pushed = theEvent.modifierFlags.contains(NSEvent.ModifierFlags.function)
+    toggleMic(pushed == enable)
   }
 
   func toggleMic(_ enable:Bool) {
