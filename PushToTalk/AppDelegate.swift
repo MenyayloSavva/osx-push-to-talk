@@ -25,6 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   func applicationDidFinishLaunching(_ aNotification: Notification) {
     talkIcon = NSImage(named: "talk")
     muteIcon = NSImage(named: "mute")
+    muteIcon?.isTemplate = true
     updateToggleTitle()
 
     statusItem.image = muteIcon
