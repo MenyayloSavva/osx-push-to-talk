@@ -10,6 +10,7 @@
 		0ED8478A1AB89E2D00710ABA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED847891AB89E2D00710ABA /* AppDelegate.swift */; };
 		0ED8478C1AB89E2D00710ABA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ED8478B1AB89E2D00710ABA /* Images.xcassets */; };
 		0ED8478F1AB89E2D00710ABA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ED8478D1AB89E2D00710ABA /* MainMenu.xib */; };
+		B21E7E6A242C3B0B00013BEA /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = B21E7E69242C3B0B00013BEA /* sounds */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +19,7 @@
 		0ED847891AB89E2D00710ABA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0ED8478B1AB89E2D00710ABA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0ED8478E1AB89E2D00710ABA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		B21E7E69242C3B0B00013BEA /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 				0ED847891AB89E2D00710ABA /* AppDelegate.swift */,
 				0ED8478B1AB89E2D00710ABA /* Images.xcassets */,
 				0ED8478D1AB89E2D00710ABA /* MainMenu.xib */,
+				B21E7E69242C3B0B00013BEA /* sounds */,
 				0ED847871AB89E2D00710ABA /* Supporting Files */,
 			);
 			path = PushToTalk;
@@ -126,6 +129,7 @@
 			files = (
 				0ED8478C1AB89E2D00710ABA /* Images.xcassets in Resources */,
 				0ED8478F1AB89E2D00710ABA /* MainMenu.xib in Resources */,
+				B21E7E6A242C3B0B00013BEA /* sounds in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

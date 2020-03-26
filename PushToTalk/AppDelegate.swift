@@ -9,16 +9,22 @@
 import Cocoa
 import AudioToolbox
 import Foundation
+import AVFoundation
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
   @IBOutlet weak var statusMenu: NSMenu!
   @IBOutlet weak var menuItemToggle: NSMenuItem!
 
-  var enable = true
+  var enabled = true
+  var pushed = false
+  var muted:Bool?
 
   var talkIcon:NSImage?
   var muteIcon:NSImage?
+
+  var apUp:AVAudioPlayer?
+  var apDown:AVAudioPlayer?
 
   let statusItem = NSStatusBar.system.statusItem(withLength: -1)
 
@@ -26,6 +32,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     talkIcon = NSImage(named: "talk")
     muteIcon = NSImage(named: "mute")
     muteIcon?.isTemplate = true
+
+    apUp = loadPlayer("sounds/up")
+    apDown = loadPlayer("sounds/down")
+
+    updateMic()
     updateToggleTitle()
 
     statusItem.image = muteIcon
@@ -42,8 +53,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   @IBAction func toggleAction(_ sender: NSMenuItem) {
-    enable = !enable
-    toggleMute(enable)
+    enabled = !enabled
+    updateMic()
     updateToggleTitle()
   }
 
@@ -53,27 +64,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   func updateToggleTitle() {
-    if (enable) {
-      menuItemToggle.title = "Disable"
-      statusItem.image = muteIcon
+    menuItemToggle.title = enabled ? "Disable / push-to-mute" : "Enable / push-to-talk"
+  }
+
+  func loadPlayer(_ name:String) -> AVAudioPlayer? {
+    if let path = Bundle.main.path(forResource: name, ofType: "mp3") {
+      let ap:AVAudioPlayer? = try? AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+      ap?.volume = 0.5
+      return ap
     } else {
-      menuItemToggle.title = "Enable"
-      statusItem.image = talkIcon
+      return nil
     }
   }
 
   func handleFlagChangedEvent(_ theEvent:NSEvent!) {
-    let pushed = theEvent.modifierFlags.contains(NSEvent.ModifierFlags.function)
-    toggleMic(pushed == enable)
+    pushed = theEvent.modifierFlags.contains(NSEvent.ModifierFlags.function)
+    updateMic()
   }
 
-  func toggleMic(_ enable:Bool) {
-    if (enable) {
-      toggleMute(false)
-      statusItem.image = talkIcon
-    } else {
-      toggleMute(true)
-      statusItem.image = muteIcon
+  func updateMic() {
+    let mute = pushed != enabled
+    if (muted != mute) {
+      muted = mute
+
+      toggleMute(mute)
+      statusItem.image = mute ? muteIcon : talkIcon
+      (mute ? apDown : apUp)?.play()
     }
   }
 
