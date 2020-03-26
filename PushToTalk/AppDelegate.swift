@@ -41,6 +41,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     })
   }
 
+  @IBAction func toggleAction(_ sender: NSMenuItem) {
+    enable = !enable
+    toggleMute(enable)
+    updateToggleTitle()
+  }
+
+  @IBAction func menuItemQuitAction(_ sender: NSMenuItem) {
+    toggleMute(false)
+    exit(0)
+  }
+
+  func updateToggleTitle() {
+    if (enable) {
+      menuItemToggle.title = "Disable"
+      statusItem.image = muteIcon
+    } else {
+      menuItemToggle.title = "Enable"
+      statusItem.image = talkIcon
+    }
+  }
+
   func handleFlagChangedEvent(_ theEvent:NSEvent!) {
     let pushed = theEvent.modifierFlags.contains(NSEvent.ModifierFlags.function)
     toggleMic(pushed == enable)
@@ -53,6 +74,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     } else {
       toggleMute(true)
       statusItem.image = muteIcon
+    }
+  }
+
+  func toggleMute(_ mute:Bool) {
+    // https://github.com/paulreimer/ofxAudioFeatures/blob/master/src/ofxAudioDeviceControl.mm
+    var defaultInputDeviceId = AudioDeviceID(0)
+    getDefaultInputDevice(&defaultInputDeviceId)
+
+    var address = AudioObjectPropertyAddress(
+      mSelector: AudioObjectPropertySelector(kAudioDevicePropertyMute),
+      mScope: AudioObjectPropertyScope(kAudioDevicePropertyScopeInput),
+      mElement: AudioObjectPropertyElement(kAudioObjectPropertyElementMaster))
+
+    let size = UInt32(MemoryLayout<UInt32>.size)
+    var mute:UInt32 = mute ? 1 : 0;
+
+    let err = AudioObjectSetPropertyData(defaultInputDeviceId, &address, 0, nil, size, &mute)
+
+    if (err != kAudioHardwareNoError) {
+      NSLog("Error setting audio object property data #%d", err);
     }
   }
 
@@ -76,46 +117,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     if (err != kAudioHardwareNoError) {
       NSLog("Error setting audio object property data #%d", err);
     }
-  }
-
-  func toggleMute(_ mute:Bool) {
-		// https://github.com/paulreimer/ofxAudioFeatures/blob/master/src/ofxAudioDeviceControl.mm
-    var defaultInputDeviceId = AudioDeviceID(0)
-    getDefaultInputDevice(&defaultInputDeviceId)
-
-    var address = AudioObjectPropertyAddress(
-      mSelector: AudioObjectPropertySelector(kAudioDevicePropertyMute),
-      mScope: AudioObjectPropertyScope(kAudioDevicePropertyScopeInput),
-      mElement: AudioObjectPropertyElement(kAudioObjectPropertyElementMaster))
-
-    let size = UInt32(MemoryLayout<UInt32>.size)
-    var mute:UInt32 = mute ? 1 : 0;
-
-    let err = AudioObjectSetPropertyData(defaultInputDeviceId, &address, 0, nil, size, &mute)
-
-    if (err != kAudioHardwareNoError) {
-      NSLog("Error setting audio object property data #%d", err);
-    }
-  }
-
-  func updateToggleTitle() {
-    if (enable) {
-      menuItemToggle.title = "Disable"
-      statusItem.image = muteIcon
-    } else {
-      menuItemToggle.title = "Enable"
-      statusItem.image = talkIcon
-    }
-  }
-
-  @IBAction func toggleAction(_ sender: NSMenuItem) {
-    enable = !enable
-    toggleMute(enable)
-    updateToggleTitle()
-  }
-
-  @IBAction func menuItemQuitAction(_ sender: NSMenuItem) {
-    toggleMute(false)
-    exit(0)
   }
 }
