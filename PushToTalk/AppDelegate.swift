@@ -31,6 +31,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   var previousTimestamp:Double = 0
 
+  var deferred:DispatchWorkItem?
+
   func applicationDidFinishLaunching(_ aNotification: Notification) {
     talkIcon = NSImage(named: "talk")
     muteIcon = NSImage(named: "mute")
@@ -40,7 +42,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     apDown = loadPlayer("sounds/down")
 
     updateToggleTitle()
-    updateMic()
+    updateMic(wait:false)
 
     statusItem.image = muteIcon
     statusItem.menu = statusMenu
@@ -58,7 +60,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   @IBAction func toggleAction(_ sender: NSMenuItem) {
     enabled = !enabled
     updateToggleTitle()
-    updateMic()
+    updateMic(wait:false)
   }
 
   @IBAction func menuItemQuitAction(_ sender: NSMenuItem) {
@@ -93,22 +95,34 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         enabled = !enabled
         updateToggleTitle()
+
+        updateMic(wait: false)
       } else {
         previousTimestamp = timestamp
-      }
-    }
 
-    updateMic()
+        updateMic(wait: true)
+      }
+    } else {
+      updateMic(wait: false)
+    }
   }
 
-  func updateMic() {
-    let mute = pushed != enabled
-    if muted != mute {
-      muted = mute
+  func updateMic(wait:Bool) {
+    deferred?.cancel()
 
-      toggleMute(mute)
-      statusItem.image = mute ? muteIcon : talkIcon
-      (mute ? apDown : apUp)?.play()
+    if wait {
+      deferred = DispatchWorkItem { self.updateMic(wait: false) }
+
+      DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2, execute: deferred!)
+    } else {
+      let mute = pushed != enabled
+      if muted != mute {
+        muted = mute
+
+        toggleMute(mute)
+        statusItem.image = mute ? muteIcon : talkIcon
+        (mute ? apDown : apUp)?.play()
+      }
     }
   }
 
