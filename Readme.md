@@ -1,11 +1,10 @@
 # OSX PushToTalk
 
-It's an application on try icon that unmute microphone on a keypress
+OSX status bar application that mutes microphone until `fn` is pressed.
 
-When the Application strat, it will add a status icon. Hold **fn** key to talk, and release to mute
+Icon will turn orange when microphone is not muted.
 
-The icon indicator will be green when talking.
-
+Double press `fn` or use a menu by clicking on the icon to reverse the behaviour.
 
 ## Troubleshooting
 
