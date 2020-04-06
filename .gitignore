@@ -1,5 +1,5 @@
 /pkg/
-
+*~
 build/
 *.pbxuser
 *.mode1v3
@@ -8,3 +8,4 @@ build/
 *.perspectivev3
 project.xcworkspace/
 xcuserdata/
+

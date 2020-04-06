@@ -14,6 +14,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D59CB19243BEB9B009BFAEE /* PushToTalk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PushToTalk.entitlements; sourceTree = "<group>"; };
 		0ED847841AB89E2D00710ABA /* PushToTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PushToTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ED847881AB89E2D00710ABA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0ED847891AB89E2D00710ABA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +53,7 @@
 		0ED847861AB89E2D00710ABA /* PushToTalk */ = {
 			isa = PBXGroup;
 			children = (
+				0D59CB19243BEB9B009BFAEE /* PushToTalk.entitlements */,
 				0ED847891AB89E2D00710ABA /* AppDelegate.swift */,
 				0ED8478B1AB89E2D00710ABA /* Images.xcassets */,
 				0ED8478D1AB89E2D00710ABA /* MainMenu.xib */,
@@ -100,7 +102,9 @@
 				TargetAttributes = {
 					0ED847831AB89E2D00710ABA = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = LWSR8T5392;
 						LastSwiftMigration = 1130;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -265,12 +269,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PushToTalk/PushToTalk.entitlements;
 				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = LWSR8T5392;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = PushToTalk/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yulrizka.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
 			};
@@ -280,12 +291,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PushToTalk/PushToTalk.entitlements;
 				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = LWSR8T5392;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = PushToTalk/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yulrizka.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
 			};
