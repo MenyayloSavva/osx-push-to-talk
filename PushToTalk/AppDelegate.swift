@@ -67,7 +67,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   func updateToggleTitle() {
-    menuItemToggle.title = enabled ? "Disable / push-to-mute" : "Enable / push-to-talk"
+    menuItemToggle.title = enabled ? "Switch to push-to-mute" : "Switch to push-to-talk"
     (enabled ? apDown : apUp)?.play()
   }
 
