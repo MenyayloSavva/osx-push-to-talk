@@ -6,10 +6,6 @@ Icon will turn orange when microphone is not muted.
 
 Double press `fn` or use a menu by clicking on the icon to reverse the behaviour.
 
-## Troubleshooting
+## Installing
 
-### The app is from an unidentified developer
-
-I did not sign the App. To enable exception for this app follow https://support.apple.com/kb/PH11436?locale=en_US
-
-If you want to be sure, just compile the project, Archive & export PushToTalk.app
+Download the newest binary from the Releases page.
