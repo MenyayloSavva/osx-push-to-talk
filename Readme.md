@@ -8,4 +8,4 @@ Double press `fn` or use a menu by clicking on the icon to reverse the behaviour
 
 ## Installing
 
-Download the newest binary from the [Releases](https://github.com/ollisulopuisto/osx-push-to-talk/releases) page.
+Download the [newest binary](https://github.com/ollisulopuisto/osx-push-to-talk/releases/latest).
