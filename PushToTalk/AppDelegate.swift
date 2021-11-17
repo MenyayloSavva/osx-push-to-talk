@@ -34,7 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   func applicationDidFinishLaunching(_ aNotification: Notification) {
     talkIcon = NSImage(named: "talk")
     muteIcon = NSImage(named: "mute")
-    muteIcon?.isTemplate = true
+    //muteIcon?.isTemplate = true
 
     apUp = loadPlayer("sounds/up")
     apDown = loadPlayer("sounds/down")

@@ -1,0 +1,5 @@
+version: "Apple Swift version 5.4 (swiftlang-1205.0.26.9 clang-1205.0.19.55)"
+options: "a481961a8d56c1f7fd0a4586217ef158"
+build_time: [1621606288, 114413000]
+inputs:
+  "/Users/savva/Documents/projects/osx-push-to-talk/PushToTalk/AppDelegate.swift": [9223372036, 854775807]
